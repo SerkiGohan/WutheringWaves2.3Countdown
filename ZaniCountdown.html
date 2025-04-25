@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zani Release Countdown – Wuthering Waves 2.3</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    body {
+      background: url('Zani.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 600px;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.3em;
+    }
+
+    h2 {
+      font-size: 1.2em;
+      margin-bottom: 1.5em;
+      color: #dddddd;
+    }
+
+    #countdown {
+      font-size: 2.2em;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 1.5em;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 1em;
+      color: #fff;
+      background: linear-gradient(135deg, #7e4fff, #b374ff);
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .button:hover {
+      background: linear-gradient(135deg, #9f6bff, #c28eff);
+      transform: scale(1.05);
+    }
+
+    .links {
+      margin-top: 2em;
+      font-size: 1.1em;
+      color: #f1f1f1;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: #b374ff;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+
+    .links a:hover {
+      color: #9f6bff;
+    }
+
+    @media (max-width: 600px) {
+      .overlay {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      #countdown {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>Zani is coming!</h1>
+    <h2>Countdown to Wuthering Waves 2.3 Release</h2>
+    <div id="countdown">Loading...</div>
+    <a href="https://www.youtube.com/@WutheringWaves" class="button" target="_blank">Watch the Trailer</a>
+    
+    <div class="links">
+      <p>Official Links:</p>
+      <a href="https://wutheringwaves.kurogames.com" target="_blank">Official Website</a>
+      <a href="https://x.com/Wuthering_Waves" target="_blank">Twitter</a>
+      <a href="https://www.youtube.com/@WutheringWaves" target="_blank">Youtube</a>
+    </div>
+  </div>
+
+  <!-- Audio Player -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="All Silent Souls Can Sing.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.2; // Lautstärke auf 20% setzen (0.0 = lautlos, 1.0 = maximal)
+
+    const releaseDate = new Date(Date.UTC(2025, 3, 29, 3, 0, 0)); // April 29, 2025, 03:00 UTC
+
+    function updateCountdown() {
+      const now = new Date();
+      const timeLeft = releaseDate - now;
+
+      if (timeLeft <= 0) {
+        document.getElementById("countdown").innerHTML = "Zani is now available!";
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeLeft / 1000) % 60);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
